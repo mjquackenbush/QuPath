@@ -1,2 +1,2 @@
-# QuPath
-Code for microscopy analysis using QuPath
+# Microscopy Analysis
+Code for microscopy analysis using QuPath and R for plotting
