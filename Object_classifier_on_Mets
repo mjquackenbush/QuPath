@@ -1,0 +1,5 @@
+// order of operations to run an object classifier in metastatic lesions
+// 1. First, create your tissue annotation outline using a pixel classifier
+// 2. Second, create your metastatic lesion outline using pixel classifier
+// 3. Run cell detection inside of your tissue annotation. Metastatic lesion annotation should have detections assigned within.
+// 4. run object classifier on cells within the metastatic lesion annotation.
