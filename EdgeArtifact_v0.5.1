@@ -1,0 +1,17 @@
+import static qupath.lib.scripting.QP.*
+import static qupath.lib.gui.scripting.QPEx.*
+
+selectCells();
+//B220 channel: true
+runPlugin('qupath.lib.algorithms.IntensityFeaturesPlugin', '{"pixelSizeMicrons":2.0,"region":"CIRCLE","tileSizeMicrons":25.0,"channel1":false,"channel2":false,"channel3":false,"channel4":false,"channel5":false,"channel6":false,"channel7":false,"channel8":false,"channel9":false,"channel10":false,"channel11":false,"channel12":false,"channel13":true,"channel14":false,"channel15":false,"channel16":false,"channel17":false,"channel18":false,"channel19":false,"channel20":false,"doMean":true,"doStdDev":false,"doMinMax":false,"doHaralick":false,"haralickMin":NaN,"haralickMax":NaN,"haralickDistance":1,"haralickBins":32}')
+def cells = getCellObjects()
+
+//replace 'CD20-F480' with the channel of interest for background subtraction
+def chName = 'B220'
+
+//measurement will be store as '*channel name* difference'
+cells.each {
+    double difference=it.measurements[chName+': Cell: Mean'] - it.measurements['Circle: Diameter 25.0 µm: 2.00 µm per pixel: '+chName+': Mean']
+
+    it.measurements[chName+'Background Difference'] = difference
+}
